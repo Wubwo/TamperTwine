@@ -18,3 +18,12 @@ To consume the event,
 ```js
 window.addEventListener('TwineChange', ( { detail } ) => console.log(detail))
 ```
+
+The detail key is passed the following:
+
+```json
+"detail": {
+  "changes": [], // An array of changed keys between old state and new.
+  "state": {}, // The full current twine state, decoded.
+}
+```

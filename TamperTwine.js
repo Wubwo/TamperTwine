@@ -32,17 +32,17 @@ const end = async () => {
 
 const main = async () => {
   // Decode the save/state and parse as JSON.
-  const save = JSON.parse(LZString.decompressFromUTF16(sessionStorage.getItem(tempData.storageName)))
-  if(!save) return console.log('An unexpected error occured with TamperTwine data processing.')
-  if(save.index === tempData.lastStorageIndex) { // No change since last poll.
+  const state = JSON.parse(LZString.decompressFromUTF16(sessionStorage.getItem(tempData.storageName)))
+  if(!state) return console.log('An unexpected error occured with TamperTwine data processing.')
+  if(state.index === tempData.lastStorageIndex) { // No change since last poll.
     return end()
   } else {
     // Use recursive diff to only report the differences between state changes.
-    const detail = recursiveDiff.getDiff(tempData.lastStorageData, save.delta[save.index])
-    setKey('lastStorageIndex', save.index)
-    setKey('lastStorageData', save.delta[save.index])
+    const changes = recursiveDiff.getDiff(tempData.lastStorageData, state.delta[state.index])
+    setKey('lastStorageIndex', state.index)
+    setKey('lastStorageData', state.delta[state.index])
     // Consumable from other scripts with window.addEventListener('TwineChange', ({ detail }) => { console.log(detail) })
-    window.dispatchEvent(new CustomEvent('TwineChange', { detail }));
+    window.dispatchEvent(new CustomEvent('TwineChange', { detail: { changes, state } }));
   }
   return end()
 }
