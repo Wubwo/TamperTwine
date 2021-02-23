@@ -23,7 +23,14 @@ The detail key is passed the following:
 
 ```json
 "detail": {
+  "index": 0,
   "changes": [], // An array of changed keys between old state and new.
   "state": {}, // The full current twine state, decoded.
 }
 ```
+---
+## Considerations
+### Back button
+This code is "back button agnostic." It treats reverting the state as a regular state update. For example, if a player's hunger level goes from `10 -> 11 -> 12`, but the player clicks the back button at 11 and then the forward button, we will track: `10 -> 11 -> 10 -> 11 -> 12`.
+
+To account for this, the `index` key is passed so you can track the direction of the changes if you wish to. The index goes up as the player continues, and goes down when they hit the back button.

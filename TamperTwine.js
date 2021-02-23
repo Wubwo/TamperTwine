@@ -39,10 +39,11 @@ const main = async () => {
   } else {
     // Use recursive diff to only report the differences between state changes.
     const changes = recursiveDiff.getDiff(tempData.lastStorageData, state.delta[state.index])
+    const oldState = tempData.lastStorageData
     setKey('lastStorageIndex', state.index)
     setKey('lastStorageData', state.delta[state.index])
     // Consumable from other scripts with window.addEventListener('TwineChange', ({ detail }) => { console.log(detail) })
-    window.dispatchEvent(new CustomEvent('TwineChange', { detail: { changes, state } }));
+    window.dispatchEvent(new CustomEvent('TwineChange', { detail: { index: state.index, changes, oldState } }));
   }
   return end()
 }
