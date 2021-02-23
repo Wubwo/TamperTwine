@@ -21,7 +21,7 @@ window.addEventListener('TwineChange', ( { detail } ) => console.log(detail))
 
 The detail key is passed the following:
 
-```json
+```js
 "detail": {
   "index": 0,
   "changes": [], // An array of changed keys between old state and new.
