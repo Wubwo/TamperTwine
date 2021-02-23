@@ -33,4 +33,4 @@ The detail key is passed the following:
 ### Back button
 This code is "back button agnostic." It treats reverting the state as a regular state update. For example, if a player's hunger level goes from `10 -> 11 -> 12`, but the player clicks the back button at 11 and then the forward button, we will track: `10 -> 11 -> 10 -> 11 -> 12`.
 
-To account for this, the `index` key is passed so you can track the direction of the changes if you wish to. The index goes up as the player continues, and goes down when they hit the back button.
+To account for this, the `index` key is passed so you can track the direction of the changes if you wish to. The index goes up as the player continues, and goes down when they hit the back button. Bear in mind that the index will not increment past the maximum history length, which is 30 by default (so index 29) but depends on the game's settings.
