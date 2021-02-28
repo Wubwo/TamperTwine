@@ -24,8 +24,8 @@ The detail key is passed the following:
 ```js
 "detail": {
   "index": 0,
-  "changes": [], // An array of changed keys between old state and new.
-  "state": {}, // The full current twine state, decoded.
+  "state": {}, // The new twine state at the current index, decoded.
+  "oldState": {}, // The old twine state at the previous index, decoded.
 }
 ```
 ---
