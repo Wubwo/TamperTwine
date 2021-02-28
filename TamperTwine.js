@@ -1,11 +1,3 @@
-// ==UserScript==
-// @name         TamperTwine
-// @namespace    https://github.com/Wubwo/
-// @author       Wubwo
-// @version      1
-// @description  Poll Twine documents to listen for changes, to debug or add aditional functionality with other scripts.
-// ==/UserScript==
-
 // To store deltas as the twine document changes.
 const setKey = (k, v) => tempData[k] = v
 const tempData = {
