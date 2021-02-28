@@ -30,7 +30,7 @@ const main = async () => {
     setKey('lastStorageIndex', state.index)
     setKey('lastStorageData', state.delta[state.index])
     // Consumable from other scripts with window.addEventListener('TwineChange', ({ detail }) => { console.log(detail) })
-    window.dispatchEvent(new CustomEvent('TwineChange', { detail: { index: state.index, state, oldState } }));
+    window.dispatchEvent(new CustomEvent('TwineChange', { detail: { index: state.index, state: state.delta[state.index], oldState } }));
   }
   return end()
 }
