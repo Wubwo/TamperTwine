@@ -23,10 +23,10 @@ const main = async () => {
   // Decode the save/state and parse as JSON.
   const state = JSON.parse(LZString.decompressFromUTF16(sessionStorage.getItem(tempData.storageName)))
   if(!state) return console.log('An unexpected error occured with TamperTwine data processing.')
-  if(state.index === tempData.lastStorageIndex) { // No change since last poll.
+  const oldState = tempData.lastStorageData
+  if(state.index === tempData.lastStorageIndex && state?.delta[state.index]?.title[1] === oldState.title[1] ) { // No change since last poll.
     return end()
   } else {
-    const oldState = tempData.lastStorageData
     setKey('lastStorageIndex', state.index)
     setKey('lastStorageData', state.delta[state.index])
     // Consumable from other scripts with window.addEventListener('TwineChange', ({ detail }) => { console.log(detail) })
