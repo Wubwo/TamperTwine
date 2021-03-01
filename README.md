@@ -26,6 +26,7 @@ The detail key is passed the following:
   "index": 0,
   "state": {}, // The new twine state at the current index, decoded.
   "oldState": {}, // The old twine state at the previous index, decoded.
+  "diff": [] // A log of the updates/deletes/additions between the two states.
 }
 ```
 ---

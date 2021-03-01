@@ -10,8 +10,8 @@
 // @match determines where to run this tampermonkey script. if your twine story is a local file, use:
 // @match file:///exact-path-to-file/twineStory.html
 
-function processTwineChange({ detail: { index, state, oldState } }) {
-  console.log(index, state, oldState)
+function processTwineChange({ detail: { index, state, oldState, diff } }) {
+  console.log(index, state, oldState, diff)
 }
 
 (() => {
